@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;600;700&family=Bangers&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 229 84% 5%;
+    --foreground: 210 40% 98%;
+    --card: 229 84% 5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 229 84% 5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 82 85% 67%;
+    --primary-foreground: 229 84% 5%;
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 11%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 188 86% 53%;
+    --accent-foreground: 229 84% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 82 85% 67%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.25rem;
+    --font-heading: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --font-hand: 'Caveat', cursive;
+    --font-cartoon: 'Bangers', 'Inter Tight', cursive;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid #BEF264;
+    outline-offset: 4px;
+  }
+}
+
+/* ---------- Atmosphere ---------- */
+.space-base { background: radial-gradient(ellipse at 68% 45%, #0b1a3a 0%, #050b22 42%, #020617 78%); }
+.nebula-a { background: radial-gradient(circle, rgba(124, 58, 237, 0.17), transparent 62%); animation: drift-a 70s ease-in-out infinite alternate; }
+.nebula-b { background: radial-gradient(circle, rgba(30, 64, 175, 0.24), transparent 60%); animation: drift-b 90s ease-in-out infinite alternate; }
+.nebula-c { background: radial-gradient(circle, rgba(34, 211, 238, 0.07), transparent 60%); animation: drift-a 110s ease-in-out infinite alternate-reverse; }
+.space-vignette { background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.65) 100%); }
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+@keyframes drift-a { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6%, 4%, 0) scale(1.12); } }
+@keyframes drift-b { from { transform: translate3d(0, 0, 0) scale(1.05); } to { transform: translate3d(-5%, 6%, 0) scale(0.95); } }
+
+/* ---------- Earth ---------- */
+.earth-atmosphere {
+  box-shadow: 0 0 50px 4px rgba(190, 242, 100, 0.28), 0 0 130px 26px rgba(34, 211, 238, 0.12), -50px -40px 180px 30px rgba(124, 58, 237, 0.14);
+}
+.earth-halo { background: radial-gradient(circle, transparent 56%, rgba(34, 211, 238, 0.09) 64%, rgba(124, 58, 237, 0.05) 70%, transparent 74%); }
+
+/* ---------- Typography ---------- */
+.outline-title { color: transparent; -webkit-text-stroke: 1.2px rgba(190, 242, 100, 0.88); }
+
+/* ---------- Controls ---------- */
+.cta-clip { clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+.nav-flicker:hover { animation: nav-flicker 0.42s steps(1) 1; }
+@keyframes nav-flicker {
+  0% { color: #BEF264; opacity: 0.5; }
+  25% { opacity: 1; }
+  45% { color: #22D3EE; opacity: 0.35; }
+  65% { color: #BEF264; opacity: 1; }
+  100% { opacity: 1; }
+}
+.animate-blink { animation: blink 1.2s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- Cursor ---------- */
+.cursor-ring-inner { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, background-color 0.3s; }
+.is-hover .cursor-ring-inner { transform: scale(1.7); border-color: rgba(190, 242, 100, 0.8); background-color: rgba(190, 242, 100, 0.06); }
+
+/* ---------- Portal ---------- */
+.portal-core {
+  background: radial-gradient(circle, rgba(247, 254, 231, 0.95) 0%, rgba(190, 242, 100, 0.92) 16%, rgba(101, 163, 13, 0.78) 34%, rgba(22, 163, 74, 0.38) 52%, rgba(20, 83, 45, 0) 68%);
+  box-shadow: 0 0 120px 20px rgba(190, 242, 100, 0.35);
+}
+.portal-swirl {
+  background: conic-gradient(from 0deg, transparent 0 8%, rgba(190, 242, 100, 0.7) 14%, transparent 24% 40%, rgba(34, 211, 238, 0.45) 48%, transparent 58% 72%, rgba(190, 242, 100, 0.6) 82%, transparent 92%);
+  -webkit-mask-image: radial-gradient(circle, black 25%, transparent 68%);
+  mask-image: radial-gradient(circle, black 25%, transparent 68%);
+  animation: spin 2.2s linear infinite;
+}
+.portal-swirl-fast { animation: spin 1.3s linear infinite; }
+.portal-swirl-rev { animation: spin 3s linear infinite reverse; }
+
+/* ---------- Liquid portal ---------- */
+@keyframes portal-rot { to { transform: rotate(360deg); } }
+@keyframes portal-rot-rev { to { transform: rotate(-360deg); } }
+.portal-rot-a { transform-box: fill-box; transform-origin: center; animation: portal-rot 28s linear infinite; }
+.portal-rot-b { transform-box: fill-box; transform-origin: center; animation: portal-rot-rev 20s linear infinite; }
+.portal-rot-c { transform-box: fill-box; transform-origin: center; animation: portal-rot 36s linear infinite; }
+.portal-rot-d { transform-box: fill-box; transform-origin: center; animation: portal-rot-rev 15s linear infinite; }
+@keyframes portal-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.portal-breathe { transform-box: fill-box; transform-origin: center; animation: portal-breathe 7s ease-in-out infinite; }
+@keyframes portal-svg-wobble { 0%, 100% { transform: scale(1, 1); } 33% { transform: scale(1.03, 0.97); } 66% { transform: scale(0.97, 1.03); } }
+.portal-svg-wobble { transform-origin: center; animation: portal-svg-wobble 9s ease-in-out infinite; }
+.portal-vortex {
+  background: radial-gradient(circle at var(--ox, 50%) var(--oy, 50%), rgba(217, 249, 157, 0.5) 0%, rgba(132, 204, 22, 0.34) 12%, rgba(22, 101, 52, 0.32) 32%, rgba(2, 6, 23, 0.94) 72%);
+}
+.portal-vortex::after {
+  content: '';
+  position: absolute;
+  left: var(--ox, 50%);
+  top: var(--oy, 50%);
+  width: 170vmax;
+  height: 170vmax;
+  background: conic-gradient(from 0deg, transparent 0 10%, rgba(190, 242, 100, 0.13) 15%, transparent 25% 45%, rgba(34, 211, 238, 0.08) 50%, transparent 60% 80%, rgba(190, 242, 100, 0.1) 88%, transparent 95%);
+  mix-blend-mode: screen;
+  animation: vortex-spin 16s linear infinite;
+}
+@keyframes vortex-spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-glitch { animation: screen-glitch 0.22s steps(2) infinite; }
+@keyframes screen-glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(-4px, 1px) skewX(-0.6deg); filter: hue-rotate(25deg); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, 2px) skewX(0.8deg); filter: saturate(1.7); }
+  100% { transform: translate(0); }
+}
+.glitch-band { animation: band-jitter 0.16s steps(2) infinite; mix-blend-mode: screen; }
+@keyframes band-jitter {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-3%); }
+  66% { transform: translateX(2.5%); }
+  100% { transform: translateX(0); }
+}
+
+/* ---------- Lab / Rick's-lab chaos ---------- */
+.handwritten { font-family: var(--font-hand); }
+.title-portal {
+  background: linear-gradient(90deg, #BEF264, #22D3EE, #7C3AED, #BEF264);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(190, 242, 100, 0.45);
+  animation: title-shift 9s linear infinite;
+}
+@keyframes title-shift { to { background-position: 300% 0; } }
+@keyframes wobble { 0%, 100% { transform: rotate(var(--r, 0deg)); } 25% { transform: rotate(calc(var(--r, 0deg) + 1.4deg)); } 75% { transform: rotate(calc(var(--r, 0deg) - 1.4deg)); } }
+.animate-wobble { animation: wobble 5s ease-in-out infinite; }
+@keyframes float-drift { 0% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(8px, -10px) rotate(6deg); } 100% { transform: translate(0, 0) rotate(0); } }
+.animate-float { animation: float-drift 9s ease-in-out infinite; }
+@keyframes smoke-billow { 0%, 100% { transform: scale(1) rotate(0); opacity: 0.5; } 50% { transform: scale(1.35) rotate(8deg); opacity: 0.85; } }
+.animate-smoke { animation: smoke-billow 6s ease-in-out infinite; }
+@keyframes cta-glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 1px); } 40% { transform: translate(2px, -1px); } 60% { transform: translate(-1px, 1px) skewX(-1deg); } 80% { transform: translate(1px, 0); } 100% { transform: translate(0); } }
+.cta-glitch:hover { animation: cta-glitch 0.3s steps(2) infinite; }
+
+.chromatic { animation: chroma 0.35s steps(4) infinite; }
+@keyframes chroma {
+  0% { filter: hue-rotate(0) contrast(1.1); }
+  25% { filter: hue-rotate(-10deg) contrast(1.2) saturate(1.3); }
+  50% { filter: hue-rotate(12deg) contrast(1.15); }
+  75% { filter: hue-rotate(-6deg) saturate(1.4); }
+  100% { filter: hue-rotate(0); }
+}
+.rgb-split { text-shadow: -2px 0 rgba(255, 0, 80, 0.7), 2px 0 rgba(0, 229, 255, 0.7); }
+
+/* ---------- Characters ---------- */
+.char-breathe { animation: char-breathe 4s ease-in-out infinite; transform-box: view-box; transform-origin: 60px 248px; }
+@keyframes char-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.018); } }
+.char-float { animation: char-float 5s ease-in-out infinite; }
+@keyframes char-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+.hair-wiggle { animation: hair-wiggle 3.5s ease-in-out infinite; transform-box: view-box; transform-origin: 60px 70px; }
+@keyframes hair-wiggle { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(1.6deg); } }
+.char-blink { animation: char-blink 6s ease-in-out infinite; transform-box: view-box; transform-origin: 60px 101px; }
+@keyframes char-blink { 0%, 92%, 100% { transform: scaleY(1); } 94%, 96% { transform: scaleY(0.1); } }
+.gun-spark { animation: gun-spark 0.22s ease-in-out infinite; transform-box: view-box; transform-origin: 118px 118px; }
+@keyframes gun-spark { 0% { opacity: 0.3; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.25); } 100% { opacity: 0.4; transform: scale(1); } }
+.gun-burst { animation: gun-burst 0.3s ease-in-out infinite; }
+@keyframes gun-burst { 0%, 100% { opacity: 0.5; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* ---------- Code-drawn characters ---------- */
+.char-svg {
+  display: block; width: 100%; height: 100%; overflow: visible;
+  filter: drop-shadow(0 0 3px rgba(34,211,238,0.4)) drop-shadow(0 0 6px rgba(124,58,237,0.18));
+}
+.chroma-fringe { opacity: 0.22; mix-blend-mode: screen; pointer-events: none; }
+.scan-overlay { opacity: 0.28; mix-blend-mode: overlay; pointer-events: none; }
+.rick-pupil, .morty-pupil { transform-box: fill-box; transform-origin: center; transform: translate(var(--lx, 0px), var(--ly, 0px)); transition: transform 0.14s ease-out; }
+/* Rick — slow, irregular, unimpressed blinks (long gaps, a late double-blink) */
+.rick-eyes { transform-box: fill-box; transform-origin: center; animation: rick-blink 14s ease-in-out infinite; }
+@keyframes rick-blink { 0%, 87%, 100% { transform: scaleY(1); } 89%, 91% { transform: scaleY(0.12); } 92% { transform: scaleY(1); } 94%, 95.5% { transform: scaleY(0.12); } 96.5% { transform: scaleY(1); } }
+/* Morty — more frequent, nervous, with a quick double-blink */
+.morty-eyes { transform-box: fill-box; transform-origin: center; animation: morty-blink 9.5s ease-in-out infinite; }
+@keyframes morty-blink { 0%, 76%, 100% { transform: scaleY(1); } 78%, 80% { transform: scaleY(0.1); } 81% { transform: scaleY(1); } 83%, 84.5% { transform: scaleY(0.1); } 85.5% { transform: scaleY(1); } }
+.char-head-rick { transform-box: fill-box; transform-origin: 50% 90%; animation: head-bob 8s ease-in-out infinite; }
+@keyframes head-bob { 0%, 100% { transform: rotate(-0.7deg); } 50% { transform: rotate(0.9deg); } }
+.char-coat { transform-box: fill-box; transform-origin: 50% 0%; animation: coat-sway 7s ease-in-out infinite; }
+@keyframes coat-sway { 0%, 100% { transform: skewX(-0.6deg); } 50% { transform: skewX(1deg); } }
+.gun-energy { transform-box: fill-box; transform-origin: center; animation: gun-energy-pulse 1.4s ease-in-out infinite; }
+@keyframes gun-energy-pulse { 0%, 100% { opacity: 0.6; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.2); } }
+.gun-energy.gun-fire { animation: gun-energy-burst 0.35s ease-in-out infinite; }
+@keyframes gun-energy-burst { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.7); } }
+.morty-head { transform-box: fill-box; transform-origin: 50% 90%; animation: morty-nervous 5.2s ease-in-out infinite; }
+@keyframes morty-nervous { 0%, 100% { transform: rotate(-1deg); } 35% { transform: rotate(0.7deg) translateY(-0.8px); } 65% { transform: rotate(-0.5deg); } }
+.morty-body { transform-box: fill-box; transform-origin: 50% 100%; animation: body-breathe 5s ease-in-out infinite; }
+@keyframes body-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.025); } }
+
+/* ---------- Rick generator idle — desynced micro-movements ---------- */
+/* Slow, irregular head sway — feels like someone slightly shifting posture */
+.rick-head-idle { transform-box: fill-box; transform-origin: center 92%; animation: rick-head-idle 8.5s ease-in-out infinite; }
+@keyframes rick-head-idle {
+  0%, 100% { transform: rotate(-0.5deg) translate(0, 0); }
+  22% { transform: rotate(0.35deg) translate(0.4px, -0.3px); }
+  48% { transform: rotate(-0.2deg) translate(-0.3px, 0.2px); }
+  73% { transform: rotate(0.45deg) translate(0.2px, -0.4px); }
+}
+/* Very subtle breathing — whole figure stretches from the feet */
+.rick-breathe { transform-box: fill-box; transform-origin: center 100%; animation: rick-breathe 5.2s ease-in-out infinite; }
+@keyframes rick-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.008); }
+}
+/* Coat hem sways with its own rhythm, independent of breathing */
+.rick-coat-sway { transform-box: fill-box; transform-origin: 50% 0%; animation: rick-coat-sway 6.8s ease-in-out infinite; }
+@keyframes rick-coat-sway {
+  0%, 100% { transform: skewX(-0.3deg) translateY(0); }
+  50% { transform: skewX(0.5deg) translateY(0.4px); }
+}
+/* Irregular blink — quick closes with a late double-blink, lid drops from top */
+.rick-gen-blink { transform-box: fill-box; transform-origin: center 32%; animation: rick-gen-blink 7.3s ease-in-out infinite; }
+@keyframes rick-gen-blink {
+  0%, 14%, 100% { transform: scaleY(1); }
+  16%, 18% { transform: scaleY(0.08); }
+  20% { transform: scaleY(1); }
+  52%, 54% { transform: scaleY(0.1); }
+  56% { transform: scaleY(1); }
+  59%, 61% { transform: scaleY(0.08); }
+  63% { transform: scaleY(1); }
+}
+/* Occasional brow twitch — a single micro-frown every ~12s */
+.rick-brow-idle { transform-box: fill-box; transform-origin: center; animation: rick-brow-idle 12.5s ease-in-out infinite; }
+@keyframes rick-brow-idle {
+  0%, 79%, 100% { transform: translateY(0); }
+  83%, 87% { transform: translateY(-0.6px); }
+  91% { transform: translateY(0); }
+}
+/* Subtle mouth corner shift — a micro-grimace every ~10s */
+.rick-mouth-idle { transform-box: fill-box; transform-origin: center; animation: rick-mouth-idle 10.3s ease-in-out infinite; }
+@keyframes rick-mouth-idle {
+  0%, 66%, 100% { transform: translateY(0) skewX(0deg); }
+  73%, 79% { transform: translateY(0.5px) skewX(-0.3deg); }
+  86% { transform: translateY(0) skewX(0deg); }
+}
+
+/* Drool drip — slow, subtle stretch like saliva about to fall */
+.rick-drool { transform-box: fill-box; transform-origin: center 15%; animation: rick-drool 5s ease-in-out infinite; }
+@keyframes rick-drool {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.12); }
+}
+
+/* ---------- Morty generator idle — nervous, anxious micro-movements ---------- */
+/* Nervous head sway — more frequent and twitchy than Rick's */
+.morty-head-idle { transform-box: fill-box; transform-origin: center 90%; animation: morty-head-idle 6s ease-in-out infinite; }
+@keyframes morty-head-idle {
+  0%, 100% { transform: rotate(0.5deg) translate(0, 0); }
+  28% { transform: rotate(-0.9deg) translate(-0.5px, 0.3px); }
+  62% { transform: rotate(0.3deg) translate(0.4px, -0.4px); }
+  85% { transform: rotate(-0.4deg) translate(-0.2px, 0.2px); }
+}
+/* Quick, shallow breathing — Morty is more anxious */
+.morty-breathe { transform-box: fill-box; transform-origin: center 100%; animation: morty-breathe 4.5s ease-in-out infinite; }
+@keyframes morty-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.012); }
+}
+/* Nervous brow raise — occasional worried twitch */
+.morty-brow-idle { transform-box: fill-box; transform-origin: center; animation: morty-brow-idle 9s ease-in-out infinite; }
+@keyframes morty-brow-idle {
+  0%, 72%, 100% { transform: translateY(0); }
+  77%, 82% { transform: translateY(-0.8px); }
+  87% { transform: translateY(0); }
+}
+/* Anxious lip quiver — subtle mouth movement */
+.morty-mouth-idle { transform-box: fill-box; transform-origin: center; animation: morty-mouth-idle 7.5s ease-in-out infinite; }
+@keyframes morty-mouth-idle {
+  0%, 68%, 100% { transform: translateY(0); }
+  74%, 80% { transform: translateY(0.6px); }
+  86% { transform: translateY(0); }
+}
+
+/* ---------- Portal rift ---------- */
+.portal-rift {
+  position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; mix-blend-mode: screen;
+  filter: brightness(calc(1 + var(--pe, 0) * 0.3 + var(--pa, 0) * 0.5)) drop-shadow(0 0 calc(14px + var(--pa, 0) * 14px) rgba(190, 242, 100, calc(0.22 + var(--pe, 0) * 0.25 + var(--pa, 0) * 0.4)));
+}
+.portal-rift .portal-swirl { position: absolute; inset: 14% 26%; border-radius: 50%; }
+.portal-rings-rot { transform-box: fill-box; transform-origin: center; animation: spin 18s linear infinite; }
+.portal-rings-rot-rev { transform-box: fill-box; transform-origin: center; animation: spin 26s linear infinite reverse; }
+.portal-swirl-svg { transform-box: fill-box; transform-origin: center; animation: spin 11s linear infinite; }
+
+/* ---------- Slime title ---------- */
+.slime-title {
+  font-family: var(--font-cartoon);
+  color: #BEF264;
+  -webkit-text-stroke: 2.5px #04140a;
+  paint-order: stroke fill;
+  filter: url(#meltFilter) drop-shadow(0 4px 12px rgba(190, 242, 100, 0.28)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
+  letter-spacing: 0.015em;
+  line-height: 0.86;
+}
+.slime-title-sm { -webkit-text-stroke-width: 1.4px; }
+
+/* ---------- Multiverse ---------- */
+.mv-grab { cursor: grab; }
+.mv-grab:active { cursor: grabbing; }
+@keyframes mv-float-dim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.mv-float { animation: mv-float-dim 7s ease-in-out infinite; }
+@keyframes mv-spin-slow { to { transform: rotate(360deg); } }
+.mv-ring-spin { transform-box: fill-box; transform-origin: center; animation: mv-spin-slow 18s linear infinite; }
+.mv-ring-spin-rev { transform-box: fill-box; transform-origin: center; animation: mv-spin-slow 26s linear infinite reverse; }
+@keyframes mv-blink-red { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.mv-blink-red { animation: mv-blink-red 1s steps(2) infinite; }
+@keyframes mv-drift { 0% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(10px, -12px) rotate(8deg); } 100% { transform: translate(0, 0) rotate(0); } }
+.mv-drift { animation: mv-drift 9s ease-in-out infinite; }
+
+/* ---------- Archive portal seam ---------- */
+.archive-seam {
+  background: linear-gradient(to bottom, transparent, rgba(190, 242, 100, 0.6), transparent);
+  box-shadow: 0 0 12px rgba(190, 242, 100, 0.4);
+  animation: seam-pulse 3s ease-in-out infinite;
+}
+@keyframes seam-pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+
+/* ---------- Episode archive ---------- */
+.scanlines { background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, rgba(0,0,0,0.28) 3px, rgba(0,0,0,0.28) 4px); }
+.scan-beam { background: linear-gradient(to bottom, transparent, rgba(190,242,100,0.18), transparent); animation: scan-move 3.4s linear infinite; }
+@keyframes scan-move { 0% { transform: translateY(-120%); } 100% { transform: translateY(120%); } }
+.signal-static {
+  background:
+    repeating-linear-gradient(90deg, rgba(190,242,100,0.7) 0 2px, transparent 2px 5px),
+    linear-gradient(90deg, rgba(34,211,238,0.4), rgba(190,242,100,0.5), rgba(124,58,237,0.4));
+  filter: blur(0.4px);
+  animation: static-flicker 1.1s steps(3) infinite;
+}
+@keyframes static-flicker { 0% { opacity: 0.55; transform: translateX(0); } 33% { opacity: 0.9; transform: translateX(-1px); } 66% { opacity: 0.4; transform: translateX(1px); } 100% { opacity: 0.7; transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nebula-a, .nebula-b, .nebula-c, .portal-swirl, .portal-vortex::after, .animate-glitch, .glitch-band, .nav-flicker:hover, .title-portal, .animate-wobble, .animate-float, .animate-smoke, .cta-glitch:hover, .chromatic, .char-breathe, .char-float, .hair-wiggle, .char-blink, .gun-spark, .gun-burst, .rick-eyes, .morty-eyes, .char-head-rick, .char-coat, .gun-energy, .gun-energy.gun-fire, .morty-head, .morty-body,   .portal-rings-rot, .portal-rings-rot-rev, .portal-swirl-svg, .portal-swirl-fast, .portal-swirl-rev, .portal-rot-a, .portal-rot-b, .portal-rot-c, .portal-rot-d, .portal-breathe, .portal-svg-wobble, .mv-float, .mv-ring-spin, .mv-ring-spin-rev, .mv-blink-red, .mv-drift, .rick-head-idle, .rick-breathe, .rick-coat-sway, .rick-gen-blink, .rick-brow-idle, .rick-mouth-idle, .rick-drool, .morty-head-idle, .morty-breathe, .morty-brow-idle, .morty-mouth-idle { animation: none !important; }
+}
